@@ -60,6 +60,19 @@ input[type=submit]:hover {
     clear: both;
 }
 
+.error{
+    color: red;
+    margin-left: 30%;
+}
+
+.apiCallMsg{
+    color: green;
+    margin-left: 30%;
+}
+
+.heading{
+    margin-left: 30%;
+}
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media (max-width: 600px) {
     .col-25, .col-75, input[type=submit] {
