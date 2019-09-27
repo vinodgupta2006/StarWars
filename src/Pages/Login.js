@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import Search from './Search'
-// import { Link } from 'react-router-dom'
-// import ReactDOM from 'react-dom';
-import '../styles/style.css';
 
 class Login extends Component {
      constructor(props) {
@@ -13,7 +10,7 @@ class Login extends Component {
         email: '',
         psw: '',
         errorMessage: '',
-        isLogin: false,
+        isLogin: true,
         apiCallMessage: ''
       }
      }
@@ -31,8 +28,8 @@ class Login extends Component {
     }
 
     onLogin = () => {
-        const { email, psw, errorMessage } = this.state
-        if(!email && email === '' || !psw && psw === '' ){
+        const { email, psw } = this.state
+        if(email === '' || psw === '' ){
             this.setState({
                 errorMessage: 'Email and Password is required field', 
             });
@@ -68,23 +65,23 @@ class Login extends Component {
             { isLogin ?
             <div>
             <h2>Login</h2>
-            <div class="container">
-            <div class="row error">{errorMessage}</div>
-            <div class="row apiCallMsg">{apiCallMessage}</div>
-                <div class="row">
-                    <div class="col-25" />
-                    <div class="col-75">
+            <div className="container">
+            <div className="row error">{errorMessage}</div>
+            <div className="row apiCallMsg">{apiCallMessage}</div>
+                <div className="row">
+                    <div className="col-25" />
+                    <div className="col-75">
                         <input type="email" name="email" placeholder="email" onChange = {this.setEmail} />
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-25" />
-                    <div class="col-75">
+                <div className="row">
+                    <div className="col-25" />
+                    <div className="col-75">
                         <input type="password" name="password" id="lname" placeholder="password" onChange = {this.setPassword} />
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-btn">
+                <div className="row">
+                    <div className="col-btn">
                         <input type="submit" value="Submit" onClick = {this.onLogin} />
                     </div>
                 </div>

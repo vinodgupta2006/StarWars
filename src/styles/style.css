@@ -80,3 +80,28 @@ input[type=submit]:hover {
         margin-top: 0;
     }
 }
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+.tableStyle{
+    margin-top: 20px;
+}
+.note{
+    font-size: 12px;
+    margin-top: 2px;
+    font-family: sans-serif;
+}
