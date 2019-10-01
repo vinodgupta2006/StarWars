@@ -4,7 +4,7 @@ class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            resultData: '',
+            resultData: [],
             searchData: [],
         }
     }
@@ -24,7 +24,11 @@ class Search extends Component {
         const { searchData } = this.state
         const results = searchData.results;
         const search = (e && e.target && e.target.value);
-        const gatResults = results.find(data => data.name === search);
+        // const gatResults = results.find(data => data.name === search);
+        let gatResults = []
+        if(search){
+            gatResults = results.filter(data => new RegExp(search, "i").test(data.name));
+        }
         this.setState({
             resultData: gatResults
         });
@@ -32,6 +36,19 @@ class Search extends Component {
 
    render() {
        const { resultData } = this.state
+       let finalListItems = resultData.map((listItems) =>
+       <tr>
+            <td>{listItems.name}</td>
+            <td>{listItems.population}</td>
+            <td>{listItems.rotation_period}</td>
+            <td>{listItems.orbital_period}</td>
+            <td>{listItems.diameter}</td>
+            <td>{listItems.climate}</td>
+            <td>{listItems.gravity}</td>
+            <td>{listItems.surface_water}</td>
+            <td>{listItems.terrain}</td>
+        </tr>
+    );
       return (
          <div>
             <h2>Search Page</h2>
@@ -40,12 +57,11 @@ class Search extends Component {
                 <div className="col-25" />
                 <div className="col-75">
                     <input type="text" name="search" placeholder="Search Planet" onChange = {this.onHandleSearch} />
-                    <div className="note">Note: Kindly search with full planet name like Alderaan</div>
                 </div>
             </div>
             </div>
             <div className="row tableStyle">
-                {resultData ? <table align="center">
+                {finalListItems.length ? <table align="center">
                     <tr>
                         <th>Planet Name</th>
                         <th>Population</th>
@@ -57,17 +73,7 @@ class Search extends Component {
                         <th>Surface Water</th>
                         <th>Terrain</th>
                     </tr>
-                    <tr>
-                        <td>{resultData.name}</td>
-                        <td>{resultData.population}</td>
-                        <td>{resultData.rotation_period}</td>
-                        <td>{resultData.orbital_period}</td>
-                        <td>{resultData.diameter}</td>
-                        <td>{resultData.climate}</td>
-                        <td>{resultData.gravity}</td>
-                        <td>{resultData.surface_water}</td>
-                        <td>{resultData.terrain}</td>
-                    </tr>
+                   {finalListItems}
                 </table>
                 : <table align="center"><tr><td>No search data found</td></tr></table>
                 }
